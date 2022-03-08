@@ -13,7 +13,7 @@ class Network {
   static String API_UPDATE = "/posts/";
   static String API_DELETE = "/posts/";
 
-  static Future<String?> GET(String api, Map<String, String> params) async {
+  static Future<String> GET(String api, Map<String, String> params) async {
     var uri = Uri.https(BASE, api, params);
     var response = await get(uri, headers: headers);
     if (response.statusCode == 200) {
@@ -22,7 +22,7 @@ class Network {
     return null;
   }
 
-  static Future<String?> POST(String api, Map<String, String> params) async {
+  static Future<String> POST(String api, Map<String, String> params) async {
     print(params.toString());
     var uri = Uri.https(BASE, api); 
     var response = await post(uri, headers:headers, body: jsonEncode(params));
@@ -32,7 +32,7 @@ class Network {
     return null;
   }
   
-  static Future<String?> PUT(String api, Map<String, String> params) async {
+  static Future<String> PUT(String api, Map<String, String> params) async {
     var uri = Uri.https(BASE, api);
     var response = await put(uri, headers: headers, body: jsonEncode(params));
     if(response.statusCode == 200) {
@@ -41,7 +41,7 @@ class Network {
     return null;
   }
   
-  static Future<String?> DEL(String api, Map<String, String> params) async {
+  static Future<String> DEL(String api, Map<String, String> params) async {
     var uri = Uri.https(BASE, api, params);
     var response = await delete(uri, headers: headers);
     if (response.statusCode == 200) {

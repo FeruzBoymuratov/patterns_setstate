@@ -4,7 +4,7 @@ class Post {
   String body;
   int userId;
 
-  Post({required this.id, required this.title, required this.body, required this.userId});
+  Post({this.id, this.title, this.body, this.userId});
 
   Post.fromJson(Map<String, dynamic> json)
       : id = json['id'],

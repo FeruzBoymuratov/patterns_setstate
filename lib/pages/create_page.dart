@@ -4,7 +4,7 @@ import '../services/http_service.dart';
 
 class CreatePage extends StatefulWidget {
   static const String id = 'create_page';
-  const CreatePage({Key? key}) : super(key: key);
+  const CreatePage({Key key}) : super(key: key);
 
   @override
   State<CreatePage> createState() => _CreatePageState();
@@ -132,9 +132,9 @@ class _CreatePageState extends State<CreatePage> {
                     ),
 
                   ],
-                  onChanged: (int? newValue){
+                  onChanged: (int newValue){
                     setState(() {
-                      dropdownValue = newValue!;
+                      dropdownValue = newValue;
                     });
                   },
                 ),

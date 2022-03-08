@@ -1,14 +1,14 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:patterns_setstate/pages/create_page.dart';
+import 'package:patterns_setstate/pages/update_page.dart';
 
 import '../models/post_model.dart';
 import '../services/http_service.dart';
 
 class HomePage extends StatefulWidget {
   static const String id = 'home_page';
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({Key key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -68,12 +68,12 @@ class _HomePageState extends State<HomePage> {
           ListView.builder(
             itemCount: items.length,
             itemBuilder: (ctx, index){
-            return itemOfPost(items[index]);
-          },),
+              return itemOfPost(items[index]);
+            },),
           isLoading ?
-              Center(
-                child: CircularProgressIndicator(),
-              ) : const SizedBox.shrink(),
+          Center(
+            child: CircularProgressIndicator(),
+          ) : const SizedBox.shrink(),
         ],
       ),
     );
@@ -82,19 +82,19 @@ class _HomePageState extends State<HomePage> {
   Widget itemOfPost(Post post){
     return Slidable(
       child: Container(
-      padding: EdgeInsets.only(left: 20, right: 20, top: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            post.title.toUpperCase(),
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 5,),
-          Text(post.body),
-        ],
+        padding: EdgeInsets.only(left: 20, right: 20, top: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              post.title.toUpperCase(),
+              style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 5,),
+            Text(post.body),
+          ],
+        ),
       ),
-    ),
       startActionPane: ActionPane(
         extentRatio: 0.25,
         children: [
@@ -105,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                 icon: Icon(Icons.edit, semanticLabel: 'Update',),
                 color: Colors.white,
                 onPressed: (){
-
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => UpdatePage(title: post.title, body: post.body,)));
                 },
               ),
             ),
@@ -122,9 +122,9 @@ class _HomePageState extends State<HomePage> {
               child: IconButton(
                 icon: Icon(Icons.delete, semanticLabel: 'Delete',),
                 color: Colors.white,
-              onPressed: (){
+                onPressed: (){
                   _apiPostDelete(post);
-              },
+                },
               ),
             ),
           ),
